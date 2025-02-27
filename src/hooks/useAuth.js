@@ -13,11 +13,9 @@ const useAuth = () => {
       const { data } = await axios.post(`${API_URL}/login`, { email, password });
 
       if (data.token) {
-        
         Cookies.set("authToken", data.token, { expires: 7 }); 
         Cookies.set("userEmail", data.email, { expires: 7 });
 
-        
         dispatch(login({ token: data.token, email: data.email }));
       }
 
@@ -36,7 +34,6 @@ const useAuth = () => {
       const { data } = await axios.post(`${API_URL}/signup`, userData);
 
       if (data) {
-        
         dispatch(signup(data));
       }
 
@@ -51,7 +48,7 @@ const useAuth = () => {
   };
 
   const logoutUser = () => {
-    
+    // Remove cookies
     Cookies.remove("authToken");
     Cookies.remove("userEmail");
 
